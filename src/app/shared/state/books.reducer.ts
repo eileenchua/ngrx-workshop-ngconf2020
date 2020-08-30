@@ -43,3 +43,10 @@ export const booksReducer = createReducer(
     };
   })
 );
+
+// Wrap reducer in function for AOT compilation
+// For Angular 8 and below and non-Ivy versions of Angular
+// Use this to access the book reducer
+export function reducer(state: State | undefined, action: Action) {
+  return booksReducer(state, action);
+}
