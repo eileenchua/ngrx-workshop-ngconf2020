@@ -1,7 +1,6 @@
 import { createReducer, on, Action, createSelector } from "@ngrx/store";
 import { BookModel, calculateBooksGrossEarnings } from "src/app/shared/models";
 import { BooksPageActions, BooksApiActions } from "src/app/books/actions";
-import { stat } from "fs";
 
 const createBook = (books: BookModel[], book: BookModel) => [...books, book];
 const updateBook = (books: BookModel[], changes: BookModel) =>
@@ -75,3 +74,26 @@ export const booksReducer = createReducer(
 export function reducer(state: State | undefined, action: Action) {
   return booksReducer(state, action);
 }
+
+/**
+ * Selectors
+ * Getter Selector - Single function, return the property
+ * Complex Selector - Combine multiple selectors and transform
+ */
+
+export const selectAll = (state: State) => state.collection;
+export const selectActiveBookId = (state: State) => state.activeBookId;
+
+export const selectActiveBook = createSelector(
+  selectAll,
+  selectActiveBookId,
+  (books, activeBookId) => {
+    return books.find((book) => book.id === activeBookId) || null;
+  }
+);
+
+export const selectEarningsTotals = createSelector(
+  selectAll,
+  // Alternative: (books) => calculateBooksGrossEarnings(books)
+  calculateBooksGrossEarnings
+);
