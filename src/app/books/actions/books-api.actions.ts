@@ -34,10 +34,10 @@ export const bookCreatedFailure = createAction(
 );
 
 export const bookDeletedSuccess = createAction(
-  "[Books API] Book Created Success",
+  "[Books API] Book Deleted Success",
   props<{ bookId: string }>()
 );
 
 export const bookDeletedFailure = createAction(
-  "[Books API] Book Created Failure"
+  "[Books API] Book Deleted Failure"
 );
