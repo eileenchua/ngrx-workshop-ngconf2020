@@ -76,7 +76,7 @@ export function reducer(state: State | undefined, action: Action) {
 }
 
 /**
- * Selectors
+ * Selectors: to be exported in state/index.ts
  * Getter Selector - Single function, return the property
  * Complex Selector - Combine multiple selectors and transform
  */
