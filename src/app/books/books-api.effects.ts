@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { createEffect, Actions, ofType, Effect } from "@ngrx/effects";
 import { mergeMap, map, catchError } from "rxjs/operators";
+import { createEffect, Actions, ofType } from "@ngrx/effects";
 import { BooksService } from "../shared/services";
 import { BooksPageActions, BooksApiActions } from "./actions";
 import { Observable, of } from "rxjs";
@@ -13,7 +13,7 @@ export class BooksApiEffects {
         private actions$: Actions,
         private booksService: BooksService
     ) {}
-    @Effect() loadBooks$ = createEffect(() => {
+    loadBooks$ = createEffect(() => {
         // Use ofType to filter the action type
         // Map the action to a side effect
         // then map the response into the action that will be dispatched
